@@ -1,11 +1,11 @@
 FROM alpine/git as clone
 MAINTAINER stangella<stangella9@gmail.com>
 WORKDIR /app
-RUN git clone 
+RUN git clone https://github.com/gsureshkiran/ci.git
 # stage-two
 FROM maven:3.5-jdk-17-alpine as build
 WORKDIR /app
-COPY --from=clone  /app/petproject   /app
+COPY --from=clone  /app/ci   /app
 RUN mvn package
 # stage-third
 FROM tomcat:7-jre7
